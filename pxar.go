@@ -159,7 +159,7 @@ type PXARArchive struct {
 
 func (a *PXARArchive) Flush() {
 
-	b := make([]byte, 10*1024*1024)
+	b := make([]byte, 64*1024)
 	for {
 		count, _ := a.buffer.Read(b)
 		if count <= 0 {
@@ -452,7 +452,7 @@ func (a *PXARArchive) WriteFile(path string, basename string) CatalogFile {
 
 	a.Flush()
 
-	readbuffer := make([]byte, 10*1024*1024)
+	readbuffer := make([]byte, 64*1024*1024)
 
 	for {
 		nread, err := file.Read(readbuffer)
